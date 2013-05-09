@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:adhub="http://schemas.android.com/apk/res/com.enigmagames.gmo"
+    android:layout_width="wrap_content"
+    android:layout_height="48dp"
+    android:gravity="center"
+    android:id="@+id/laidout"
+    android:orientation="horizontal" >
+
+    <com.sec.android.ad.AdHubView
+        android:id="@+id/AdLayout"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        adhub:adSize="BANNER"
+        adhub:inventoryId="xv0c000000007f"
+        adhub:onlyXml="true" >
+
+    </com.sec.android.ad.AdHubView>
+
+</LinearLayout>
