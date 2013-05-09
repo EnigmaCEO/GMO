@@ -11,6 +11,7 @@
        
 		
 <script type="text/javascript" charset="utf-8" src="cordova-2.7.0.js"></script>
+<script type="text/javascript" charset="utf-8" src="barcodescanner.js"></script>
 
     <script type="text/javascript" charset="utf-8">
      
@@ -23,333 +24,17 @@
 		//window.alert( 'Width = ' + myWidth ); window.alert( 'Height = ' + myHeight ); 
 	}
 	
-	function dayofyear() {   
-		var d=new Date(); // gets today's date
-		var yn = d.getFullYear();
-		var mn = d.getMonth();
-		var dn = d.getDate();
-		var d1 = new Date(yn,0,1,12,0,0); // noon on Jan. 1
-		var d2 = new Date(yn,mn,dn,12,0,0); // noon on input date
-		var ddiff = Math.round((d2-d1)/864e5);
-		return ddiff+1; 
-	}
+	function Scan() {
+		 window.plugins.barcodeScanner.scan( function(result) {
+        alert("We got a barcode\n" +
+                  "Result: " + result.text + "\n" +
+                  "Format: " + result.format + "\n" +
+                  "Cancelled: " + result.cancelled);
+	    }, function(error) {
+	        alert("Scanning failed: " + error);
+	                }
+	    );
 		
-	function PrintTitle(val) {
-		document.getElementById("title").innerHTML = val;
-	}
-	function PrintTitle2(val) {
-		document.getElementById("title2").innerHTML = val;
-	}
-	function PrintText(val) {
-		document.getElementById("text").innerHTML += val;
-	}
-	
-	function Select() {
-		var day = dayofyear()%50+1;
-
-	    switch (day) {
-		case 1:
-			PrintTitle("segue");
-			PrintTitle2("(SEG-way)");
-			PrintText("To proceed without interruption; to make a smooth transition.");
-			PrintText("<br><br><b>Usage: </b>Daylight segued into dusk.");
-			break;
-	    case 2:
-	        PrintTitle("fulsome");
-	        PrintTitle2("(FUL-sum)");
-	        PrintText("Offensive from excess of praise.");
-	        PrintText("<br><br><b>Usage: </b>He concealed disgust under the appearance of fulsome endearment.");
-	        break;
-	    case 3:
-	        PrintTitle("sinecure");
-	        PrintTitle2("(SIN-i-kyoor)");
-	        PrintText("Any office or position which requires or involves little or no responsibility, labor, or active service.");
-	        PrintText("<br><br><b>Usage: </b>I was fortunate to receive the offer, which was a sinecure.");
-	        break;
-	    case 4:
-	        PrintTitle("gainsay");
-	        PrintTitle2("(gayn-SAY)");
-	        PrintText("To contradict; to deny; to controvert; to dispute; to forbid.");
-	        PrintText("<br><br><b>Usage: </b>Facts which cannot be gainsaid.");
-	        break;
-	    case 5:
-	        PrintTitle("equivocate");
-	        PrintTitle2("(ih-KWIV-uh-kayt)");
-	        PrintText("To be deliberately ambiguous or unclear in order to mislead or to avoid committing oneself to anything definite.");
-	        PrintText("<br><br><b>Usage: </b>The witness shuffled, equivocated, pretended to misunderstand the questions.");
-	        break;
-	    case 6:
-	        PrintTitle("truculent");
-	        PrintTitle2("(TRUCK-yuh-luhnt)");
-	        PrintText("Fierce; savage; ferocious; barbarous.");
-	        PrintText("<br><br><b>Usage: </b>We mistook his cursing as actions of a truculent fugitive.");
-	        break;
-	    case 7:
-	        PrintTitle("inveigh");
-	        PrintTitle2("(in-VAY)");
-	        PrintText("To attack with harsh criticism or reproach, either spoken or written.");
-	        PrintText("<br><br><b>Usage: </b>They inveigh from their respective pulpits against abuse of English.");
-	        break;
-	    case 8:
-	        PrintTitle("supercilious");
-	        PrintTitle2("(soo-pur-SILL-ee-us)");
-	        PrintText("Lofty with pride; haughty; dictatorial; overbearing; arrogant.");
-	        PrintText("<br><br><b>Usage: </b>The girl has a supercilious expression, and seems to be looking down her nose at the camera.");
-	        break;
-	    case 9:
-	        PrintTitle("probity");
-	        PrintTitle2("(PRO-bih-tee)");
-	        PrintText("Tried virtue or integrity; approved moral excellence; honesty; uprightness.");
-	        PrintText("<br><br><b>Usage: </b>He admired Fred's probity");
-	        break;
-	    case 10:
-	        PrintTitle("afflatus");
-	        PrintTitle2("(uh-FLAY-tuhs)");
-	        PrintText("A divine impartation of knowledge; supernatural impulse; inspiration.");
-	        PrintText("<br><br><b>Usage: </b>Whatever happened to passion and vision and the divine afflatus in poetry?");
-	        break;
-	    case 11:
-	        PrintTitle("deprecate");
-	        PrintTitle2("(DEP-ri-kayt)");
-	        PrintText("To disapprove of strongly.");
-	        PrintText("<br><br><b>Usage: </b>To deprecate panic is an excellent counsel in itself.");
-	        break;
-	    case 12:
-	        PrintTitle("capacious");
-	        PrintTitle2("(kuh-PAY-shuhs)");
-	        PrintText("Having capacity; able to contain much; large; roomy; spacious.");
-	        PrintText("<br><br><b>Usage: </b>The capacious home of Elvis.");
-	        break;
-	    case 13:
-	        PrintTitle("plethora");
-	        PrintTitle2("(PLETH-uh-ruh)");
-	        PrintText("State of being overfull; excess; superabundance.");
-	        PrintText("<br><br><b>Usage: </b>He labors under a plethora of wit and imagination.");
-	        break;
-	    case 14:
-	        PrintTitle("inclement");
-	        PrintTitle2("(in-KLEM-uhnt)");
-	        PrintText("Physically severe or harsh (generally restricted to the elements or weather).");
-	        PrintText("<br><br><b>Usage: </b>The weather tonight is unseasonably inclement.");
-	        break;
-	    case 15:
-	        PrintTitle("quorum");
-	        PrintTitle2("(KWOR-uhm)");
-	        PrintText("A gathering of members of an organization large enough to transact business.");
-	        PrintText("<br><br><b>Usage: </b>It was order'd that 5 should be a quorum for a Council.");
-	        break;
-	    case 16:
-	        PrintTitle("gamut");
-	        PrintTitle2("(GAM-uht)");
-	        PrintText("A complete extent or range.");
-	        PrintText("<br><br><b>Usage: </b>His face expressed a gamut of emotions.");
-	        break;
-	    case 17:
-	        PrintTitle("irascible");
-	        PrintTitle2("(ir-AS-uh-buhl)");
-	        PrintText("Quickly aroused to anger.");
-	        PrintText("<br><br><b>Usage: </b>The boar is a much more irascible and courageous animal.");
-	        break;
-	    case 18:
-	        PrintTitle("multifarious");
-	        PrintTitle2("(muhl-tuh-FAR-ee-uhs)");
-	        PrintText("Having great diversity or variety.");
-	        PrintText("<br><br><b>Usage: </b>Hysteria, a psychological ailment with no known physical cause, has multifarious symptoms.");
-	        break;
-	    case 19:
-	        PrintTitle("trepidation");
-	        PrintTitle2("(trep-uh-DAY-shuhn)");
-	        PrintText("A state of terror or alarm; fear; confusion; fright.");
-	        PrintText("<br><br><b>Usage: </b>I found a large party assembled. I entered with some trepidation.");
-	        break;
-	    case 20:
-	        PrintTitle("avarice");
-	        PrintTitle2("(AV-uh-ris)");
-	        PrintText("An excessive desire of gain; greediness after wealth.");
-	        PrintText("<br><br><b>Usage: </b>To desire money for its own sake, and in order to hoard it up, is avarice.");
-	        break;
-	    case 21:
-	        PrintTitle("bestow");
-	        PrintTitle2("(bih-STOH)");
-	        PrintText("To give or confer; to impart.");
-	        PrintText("<br><br><b>Usage: </b>They bestowed high praise on the winners.");
-	        break;
-	    case 22:
-	        PrintTitle("raucous");
-	        PrintTitle2("(RAWK-uhs)");
-	        PrintText("Disturbing the public peace; loud and rough.");
-	        PrintText("<br><br><b>Usage: </b>He drew raucous laughter from one group of women.");
-	        break;
-	    case 23:
-	        PrintTitle("gregarious");
-	        PrintTitle2("(gri-GAIR-ee-us)");
-	        PrintText("Seeking and enjoying the company of others.");
-	        PrintText("<br><br><b>Usage: </b>A gregarious person avoids solitude.");
-	        break;
-	    case 24:
-	        PrintTitle("verbiage");
-	        PrintTitle2("(VUR-bee-ij)");
-	        PrintText("The use of many words without necessity, or with little sense; wordiness.");
-	        PrintText("<br><br><b>Usage: </b>Verbiage may indicate observation, but not thinking.");
-	        break;
-	    case 25:
-	        PrintTitle("adamant");
-	        PrintTitle2("(AD-uh-muhnt)");
-	        PrintText("Not capable of being swayed or diverted from a course.");
-	        PrintText("<br><br><b>Usage: </b>They were adamant about not wanting any publicity.");
-	        break;
-	    case 26:
-	        PrintTitle("innocuous");
-	        PrintTitle2("(i-NOK-yoo-us)");
-	        PrintText("Harmless; producing no ill effect.");
-	        PrintText("<br><br><b>Usage: </b>Men have commonly more pleasure in the criticism which hurts than in that which is innocuous.");
-	        break;
-	    case 27:
-	        PrintTitle("colloquial");
-	        PrintTitle2("(kuh-LOH-kwee-uhl)");
-	        PrintText("Characteristic of informal spoken language or conversation.");
-	        PrintText("<br><br><b>Usage: </b>His colloquial talents were, indeed, of the highest order.");
-	        break;
-	    case 28:
-	        PrintTitle("chagrin");
-	        PrintTitle2("(shuh-GRIN)");
-	        PrintText("Acute vexation, annoyance, or embarrassment, arising from disappointment or failure.");
-	        PrintText("<br><br><b>Usage: </b>He noted with chagrin how little hair clung to his head.");
-	        break;
-	    case 29:
-	        PrintTitle("facile");
-	        PrintTitle2("(FASS-uhl)");
-	        PrintText("Easy to be done or performed: not difficult.");
-	        PrintText("<br><br><b>Usage: </b>That's too facile a solution for so complex a problem");
-	        break;
-	    case 30:
-	        PrintTitle("indolent");
-	        PrintTitle2("(IN-duh-luhnt)");
-	        PrintText("Indulging in ease; avoiding labor and exertion.");
-	        PrintText("<br><br><b>Usage: </b>I am naturally indolent and without application to any kind of business.");
-	        break;
-	    case 31:
-	        PrintTitle("tortuous");
-	        PrintTitle2("(TOR-choo-us)");
-	        PrintText("Marked by repeated turns and bends.");
-	        PrintText("<br><br><b>Usage: </b>We found the river-course very tortuous.");
-	        break;
-	    case 32:
-	        PrintTitle("fatuous");
-	        PrintTitle2("(FACH-oo-us)");
-	        PrintText("Feeble in mind; weak; silly; stupid; foolish.");
-	        PrintText("<br><br><b>Usage: </b>Many people still persist in the fatuous belief of supersition.");
-	        break;
-	    case 33:
-	        PrintTitle("hauteur");
-	        PrintTitle2("(haw-TUR)");
-	        PrintText("Haughty manner, spirit, or bearing; haughtiness; arrogance.");
-	        PrintText("<br><br><b>Usage: </b>My silence, I hoped, would be taken as expressive of the hauteur of a man who was above it all.");
-	        break;
-	    case 34:
-	        PrintTitle("puerile");
-	        PrintTitle2("(PYOOR-uhl)");
-	        PrintText("Displaying or suggesting a lack of maturity; juvenile; childish.");
-	        PrintText("<br><br><b>Usage: </b>Political arguments are becoming a puerile.");
-	        break;
-	    case 35:
-	        PrintTitle("berate");
-	        PrintTitle2("(bih-RAYT)");
-	        PrintText("To scold severely or angrily.");
-	        PrintText("<br><br><b>Usage: </b>She ran up the stairs to berate him for playing loudly after the baby was asleep.");
-	        break;
-	    case 36:
-	        PrintTitle("explicate");
-	        PrintTitle2("(EK-spluh-kayt)");
-	        PrintText("To explain; to clear of difficulties or obscurity.");
-	        PrintText("<br><br><b>Usage: </b>The exam asked students to explicate a passage from Kant.");
-	        break;
-	    case 37:
-	        PrintTitle("maelstrom");
-	        PrintTitle2("(MAYL-struhm)");
-	        PrintText("A large, powerful, or destructive whirlpool.");
-	        PrintText("<br><br><b>Usage: </b>Always at the center of a maelstrom of activity and contention, he provided good columns for the press.");
-	        break;
-	    case 38:
-	        PrintTitle("putative");
-	        PrintTitle2("(PYOO-tuh-tiv)");
-	        PrintText("Commonly thought or deemed; supposed; reputed.");
-	        PrintText("<br><br><b>Usage: </b>A report has found that the putative evidence for the paper that started the controversy was fabricated.");
-	        break;
-	    case 39:
-	        PrintTitle("disparate");
-	        PrintTitle2("(dis-PAIR-it)");
-	        PrintText("Fundamentally different or distinct in quality or kind.");
-	        PrintText("<br><br><b>Usage: </b>Science at its best isolates a common element underlying many seemingly disparate phenomena.");
-	        break;
-	    case 40:
-	        PrintTitle("prevaricate");
-	        PrintTitle2("(prih-VAIR-uh-kayt)");
-	        PrintText("To depart from or evade the truth.");
-	        PrintText("<br><br><b>Usage: </b>Men and women suddenly transferred to places of great power are often led to exaggerate and prevaricate.");
-	        break;
-	    case 41:
-	        PrintTitle2("jovial");
-	        PrintTitle2("(JOH-vee-uhl)");
-	        PrintText("Merry; joyous; jolly.");
-	        PrintText("<br><br><b>Usage: </b>He smiled, joked and at times seemed downright jovial.");
-	        break;
-	    case 42:
-	        PrintTitle("vehement");
-	        PrintTitle2("(VEE-uh-muhnt)");
-	        PrintText("Characterized by intensity of emotions or convictions, or forcefulness of expression.");
-	        PrintText("<br><br><b>Usage: </b>His decisions were met by vehement cries of protest.");
-	        break;
-	    case 43:
-	        PrintTitle("hyperbole");
-	        PrintTitle2("(hy-PUHR-buh-lee)");
-	        PrintText("Extravagant exaggeration.");
-	        PrintText("<br><br><b>Usage: </b>Proclaiming to be the greatest is nothing more than a hyperbole.");
-	        break;
-	    case 44:
-	        PrintTitle("requisite");
-	        PrintTitle2("(REK-wuh-zit)");
-	        PrintText("Required by the nature of things or by circumstances; indispensable.");
-	        PrintText("<br><br><b>Usage: </b>Knowledge and determination are requisites for success.");
-	        break;
-	    case 45:
-	        PrintTitle("caveat");
-	        PrintTitle2("(KAH-vee-aht)");
-	        PrintText("A warning or caution.");
-	        PrintText("<br><br><b>Usage: </b>The caveat that the roads were hazardous prevented heavy traffic.");
-	        break;
-	    case 46:
-	        PrintTitle("imbue");
-	        PrintTitle2("(im-BYOO)");
-	        PrintText("To tinge or dye deeply; to cause to absorb thoroughly.");
-	        PrintText("<br><br><b>Usage: </b>Beauty is equal parts flesh and imagination: we imbue it with our dreams, saturate it with our longings.");
-	        break;
-	    case 47:
-	        PrintTitle("paragon");
-	        PrintTitle2("(PAIR-uh-gon)");
-	        PrintText("A model of excellence or perfection.");
-	        PrintText("<br><br><b>Usage: </b>He was a paragon of health.");
-	        break;
-	    case 48:
-	        PrintTitle("juxtaposition");
-	        PrintTitle2("(juhk-stuh-puh-ZISH-uhn)");
-	        PrintText("The act or an instance of placing in nearness or side by side.");
-	        PrintText("<br><br><b>Usage: </b>The painting was placed in juxtaposition with the competition and was clearly superior.");
-	        break;
-	    case 49:
-	        PrintTitle("arcane");
-	        PrintTitle2("(ar-KAYN)");
-	        PrintText("Understood or known by only a few.");
-	        PrintText("<br><br><b>Usage: </b>He is well known for having several arcane habits.");
-	        break;
-	    case 50:
-	        PrintTitle("eremite");
-	        PrintTitle2("(ER-uh-myt)");
-	        PrintText("A hermit, especially a religious recluse.");
-	        PrintText("<br><br><b>Usage: </b>He is in the private cave of his freedom, an eremite, a solitary; he orders his mind as he pleases.");
-	        break;
-	    }
-	
 	}
 
     // Wait for Cordova to load
@@ -363,7 +48,8 @@
         alertSize();
         if(myWidth > 0) document.body.style.width = myWidth;
         if(myHeight > 0) document.body.style.height = myHeight;
-        Select();
+       
+       Scan();
     }
 	
 	touchMove = function(event) {
@@ -378,7 +64,6 @@
 		
 <style>
 body {
-	background-image:url(bg.jpg);
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 36px;
 	margin: 25px;
@@ -413,7 +98,7 @@ body {
 <body ontouchmove="touchMove(event);">
 <div id="title"></div>
 <div id="title2"></div>
-<div id="text"></div>
+<div id="text"><input type="button" value="Scan" onclick="Scan();" ></div>
 
 </body>
 
